@@ -398,3 +398,10 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+# .NET Core specific
+bin/
+obj/
+*.dll
+*.exe
+*.log
+*.vs/
