@@ -405,3 +405,5 @@ obj/
 *.exe
 *.log
 *.vs/
+appsettings.Development.json
+appsettings.json
