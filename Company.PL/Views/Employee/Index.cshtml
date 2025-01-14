@@ -1,0 +1,78 @@
+﻿@model IEnumerable<EmployeeViewModel>
+@{
+    ViewData["Title"] = "Index";
+   
+}
+
+@*<div class="alert alert-warning">
+    @ViewData["Message"]
+    @ViewBag.Message
+</div>
+*@
+<h1>All Employees</h1>
+<br/>
+<br/>
+<a asp-controller="Employee" asp-action="Create" class="btn btn-primary">Create New Employee</a>
+<br />
+<div class="row justify-content-center align-items-center mt-5">
+    <form asp-action="index" class="row col-8 offset-2">
+        <div class="col-8">
+            <input type="text" class="form-control" name="searchinp" id="searchinp" placeholder="Search" />
+        </div>
+        <div class="col-4">
+            <input type="submit" value="Search" class="btn btn-success"/>
+        </div>
+    </form>
+</div>
+@if(Model.Count() > 0){
+    <table class="mt-4 table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(e=>e.Name)</th>
+                <th>@Html.DisplayNameFor(e=>e.Age)</th>
+                <th>@Html.DisplayNameFor(e=>e.Adderss)</th>
+                <th>@Html.DisplayNameFor(e=>e.Department)</th>
+                <th>@Html.DisplayNameFor(e=>e.Salary)</th>
+                <th>@Html.DisplayNameFor(e=>e.IsActive)</th>
+                <th>@Html.DisplayNameFor(e=>e.Email)</th>
+                <th>@Html.DisplayNameFor(e=>e.PhoneNumber)</th>
+                <th>@Html.DisplayNameFor(e=>e.HireDate)</th>
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var Employee in Model)
+            {
+                <tr>
+                    <td>@Employee.Name</td>
+                    <td>@Employee.Age</td>
+                    <td>@Employee.Adderss</td>
+                    <td>@Employee.Department?.Name</td>
+                    <td>@Employee.Salary</td>
+                    <td>
+                        @if (Employee.IsActive == true)
+                        {
+                            <i class="fa-solid fa-circle" style="color :#0583D2 "></i>
+                            }
+                            else
+                            {
+                            <i class="fa-solid fa-circle" style="color :red "></i>
+                        }
+                    </td>
+                    <td>@Employee.Email</td>
+                    <td>@Employee.PhoneNumber</td>
+                    <td>@Employee.HireDate</td>
+
+                    <partial name="_ButtonsPartial" model="@Employee.Id.ToString()"/>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else {
+     <div class="mt-4 alert alert-warning">
+         <h2>There Is No Employees :(</h2>
+     </div>
+}

@@ -1,0 +1,23 @@
+﻿@model EmployeeViewModel
+
+@*@inject IUnitOfWork _unitofwork*@
+
+@{
+    ViewData["Title"] = "Create";
+  
+    //ViewData["Departments"] = _departmentRepo.GetAll();
+}
+
+<h1>Create New Employee</h1>
+
+<br />
+<br />
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <partial name="PartialViews/_CreateEditPartialEmployee" />
+    <input type="submit" value="create" class="btn btn-primary"/>
+    <a asp-action="Index" class="btn btn-light">Back To List</a>
+</form>
+@section ValidationScriptSection{
+    <partial name="_ValidationScriptsPartial" />
+}
